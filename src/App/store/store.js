@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import { getMessages } from '../services/rest/rest';
+import { getMessages, getUsers, getUser, postMessage, startAutoPulling, stopAutoPulling } from '../services/rest/rest';
 
 const initialState = {
     messages: [],
@@ -10,7 +10,13 @@ const initialState = {
 function reducer(state = initialState, action) {
     console.log(action);
     switch (action.type) {
-        case 'INIT_MESSAGES':getMessages();
+        case 'INIT_MESSAGES': getMessages();
+            return state;
+        case 'INIT_USERS': getUsers();
+            return state;
+        case 'INIT_PULLING': startAutoPulling();
+            return state;
+        case 'STOP_PULLING': stopAutoPulling();
             return state;
         case 'ADD_MESSAGES':
             return { ...state, messages: [...state.messages, ...action.values] };
@@ -18,6 +24,8 @@ function reducer(state = initialState, action) {
             return { ...state, users: [...state.users, ...action.values] };
         case 'SET_CURRENT_USER':
             return { ...state, user: action.value };
+        case 'POST_MESSAGE': postMessage(action.value);
+            return state;
         default: return state;
     }
 }
