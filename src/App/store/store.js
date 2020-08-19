@@ -31,8 +31,8 @@ const store = createStore(reducer);
 // store.subscribe(()=>{
 //     console.log(store.getState());
 // });
-store.dispatch({ type: 'ADD_MESSAGES', values: [{ id: 1, message: 'HELO' }] });
-store.dispatch({ type: 'ADD_USERS', values: [{ id: 1, name: 'Alex' }] });
-store.dispatch({ type: 'SET_CURRENT_USER', value: { id: 2, name: 'Pierre' }});
+// store.dispatch({ type: 'ADD_MESSAGES', values: [{ id: 1, message: 'HELO' }] });
+// store.dispatch({ type: 'ADD_USERS', values: [{ id: 1, name: 'Alex' }] });
+// store.dispatch({ type: 'SET_CURRENT_USER', value: { id: 2, name: 'Pierre' }});
 
 export default store;
