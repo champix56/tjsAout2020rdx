@@ -20,6 +20,8 @@ function reducer(state = initialState, action) {
             return state;
         case 'ADD_MESSAGES':
             return { ...state, messages: [...state.messages, ...action.values] };
+        case 'CONNECT_USER': getUser(action.value);
+            return state;
         case 'ADD_USERS':
             return { ...state, users: [...state.users, ...action.values] };
         case 'SET_CURRENT_USER':
