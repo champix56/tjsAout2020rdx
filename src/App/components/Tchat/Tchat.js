@@ -1,21 +1,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Tchat.module.scss';
-import { getMessages, getUsers } from '../../services/rest/rest';
+import { getMessages, getUsers, getUser } from '../../services/rest/rest';
 import TchatReader from '../TchatReader/TchatReader';
 import TchatUsers from '../TchatUsers/TchatUsers';
 import TchatSender from '../TchatSender/TchatSender';
+import { withRouter } from 'react-router-dom';
 class Tchat extends Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       lastMessageId: 0,
-      messages: [], users: [], user: { id: 1, name: 'Alex' }
+      messages: [], users: [], user: { }
     };
-
+    //this.setState({});
   }
   componentDidMount() {
-
+    getUser(this.props.match.params.name,obj=>{
+      if(undefined===obj)
+      {
+        this.props.history.push('/');
+        return;
+      }
+      this.setState({user:obj} 
+        )},false);
     getUsers(e =>this.setState({ users: e }));
     getMessages(e => {
       //const lastID = e[e.length - 1].id;
@@ -37,7 +46,7 @@ class Tchat extends Component {
   render() {
     return (
       <div className={styles.Tchat}>
-        <div className={styles.username}>Connecté comme : {this.state.user.id}::{this.state.user.name}</div>
+        <div className={styles.username}>Connecté comme : {this.state.user.name}::{this.state.user.id}</div>
         <div style={{ display: "flex", height: '80vh' }}>
           <TchatReader style={{ flex: 4, overflowY: 'auto', height: '100%',padding:'10px', borderRight:'1px solid grey' }} />
           <TchatUsers style={{ flex: 1, overflowY: 'auto', height: '100%' }} />
@@ -52,4 +61,4 @@ class Tchat extends Component {
 Tchat.propTypes = {}
 Tchat.defautProps = {}
 
-export default Tchat;
+export default withRouter(Tchat); 

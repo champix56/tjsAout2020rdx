@@ -12,6 +12,26 @@
       "id": 2,
       "name": "Oumayma",
       "nickname": "Oumayma"
+    },
+    {
+      "name": "Pierre",
+      "id": 3
+    },
+    {
+      "name": "Remi",
+      "id": 4
+    },
+    {
+      "name": "noureddine",
+      "id": 5
+    },
+    {
+      "name": "clement",
+      "id": 6
+    },
+    {
+      "name": "Nadjem",
+      "id": 7
     }
   ],
   "public_messages": [
