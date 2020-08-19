@@ -1,4 +1,4 @@
-import store from '../../store/redux/redux'
+import store from '../../store/store'
 const ADR_REST_SRV = 'http://localhost:5629';
 //const ADR_REST_SRV = 'http://86.195.10.30:5629';
 

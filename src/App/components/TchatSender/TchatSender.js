@@ -3,6 +3,7 @@ import {PropTypes} from 'prop-types';
 import styles from './TchatSender.module.scss';
 import Mybutton from '../Mybutton/Mybutton';
 import {postMessage} from '../../services/rest/rest';
+import store from '../../store/store';
 export default class TchatSender extends Component {
   
   constructor(props){
@@ -10,7 +11,10 @@ export default class TchatSender extends Component {
     this.state={message:'',color:'#FFFFFF'}
   }
   submitform=()=>{
-    postMessage({...this.state,userId:this.props.whoiamID, date:new Date().toISOString()},e=>{this.setState({...this.state,message:''})})
+   // postMessage({...this.state,userId:this.props.whoiamID, date:new Date().toISOString()},e=>{this.setState({...this.state,message:''})})
+   //remplacement par action du store
+   store.dispatch({type:'POST_MESSAGE',value:{...this.state,date:new Date().toISOString(),userId:store.getState().user.id}})
+   this.setState({message:'',color:this.state.color});
   }
   render() {
     return (
