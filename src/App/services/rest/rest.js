@@ -1,7 +1,8 @@
- const ADR_REST_SRV = 'http://localhost:5629';
+import store from '../../store/store'
+const ADR_REST_SRV = 'http://localhost:5629';
 //const ADR_REST_SRV = 'http://86.195.10.30:5629';
 
-export const getMessages = (callback, id) => {
+export const getMessages = (id) => {
     let adr = `${ADR_REST_SRV}/public_messages?_sort=id&_expand=user`;
     if (undefined !== id) {
         adr += '&id_gte=' + (id + 1);
@@ -9,7 +10,8 @@ export const getMessages = (callback, id) => {
     fetch(adr)
         .then((fluxReponse) => { return fluxReponse.json() })
         .then((fluxjson) => {
-            callback(fluxjson);
+           // callback(fluxjson);
+           store.dispatch({type:'ADD_MESSAGES',values:fluxjson});
             return fluxjson;
         })
 }
